@@ -1,0 +1,35 @@
+Função 01 (Calcular Total de Compras por Cliente):
+Criar esta função permite que o sistema verifique facilmente o valor total gasto por um cliente sem precisar reescrever a lógica de SUM e GROUP BY toda vez. 
+Pode ser usada em relatórios, dashboards ou para lógicas de fidelidade de clientes.
+
+Função 02 (Obter Estoque Atual de um Produto):
+Centraliza a consulta de estoque em um único ponto. Se a forma de calcular o estoque mudar no futuro, apenas a função precisará ser alterada, e todo o sistema
+ que a utiliza será atualizado automaticamente.
+
+Procedure (Registrar Nova Venda):
+Uma venda é uma operação crítica que envolve múltiplas etapas. Uma procedure garante que todas as etapas (verificação de estoque, inserção em venda, inserção 
+em venda_item e atualização de produto) sejam executadas em uma única transação. Se qualquer passo falhar, toda a operação é revertida (rollback), evitando inconsistências nos dados.
+
+Trigger (Registrar Movimentação de Estoque):
+Este trigger automatiza a criação de um histórico de movimentação de estoque. Ele garante que toda alteração na quantidade de produtos seja auditada na tabela 
+movimento_estoque, o que é fundamental para o controle e a rastreabilidade do inventário.
+
+View 01 (Relatório Detalhado de Vendas):
+Simplifica drasticamente a geração de relatórios de vendas. Em vez de escrever um JOIN complexo com 4 tabelas toda vez, o analista ou o sistema pode simplesmente 
+fazer um SELECT na vw_relatorio_vendas.
+
+View 02 (Visão Geral de Produtos e Categorias):
+Facilita a visualização do catálogo de produtos com informações de categoria e estoque, útil para a equipe de vendas e para a gestão de inventário.
+
+View 03 (Detalhes dos Usuários do Sistema):
+Essencial para a administração do sistema, permitindo que gestores visualizem rapidamente as permissões e os departamentos dos usuários sem a necessidade 
+de consultar três tabelas diferentes.
+
+Índices:
+
+idx_cliente_nome e idx_produto_nome: A busca por nome de cliente ou produto é uma das operações mais comuns em um sistema de vendas. Estes índices acelerarão essas buscas significativamente.
+
+idx_venda_data_hora: Essencial para gerar relatórios de vendas por período (diário, mensal, anual), tornando a filtragem por data muito mais rápida.
+
+idx_cliente_cpf e idx_fornecedor_cnpj: O CPF e o CNPJ são campos de identificação únicos e frequentemente utilizados para localizar um registro específico. Um índice do tipo 
+UNIQUE não só acelera a busca, mas também impede a inserção de valores duplicados, reforçando a integridade dos dados.
