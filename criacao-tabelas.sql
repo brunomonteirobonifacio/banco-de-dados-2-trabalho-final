@@ -43,12 +43,12 @@ create table tipo_usuario (
 );
 
 create table usuario (
-	id              serial 			not null primary key,
+	id              serial      not null primary key,
 	nome            varchar(50),
-	cpf             char(11)		not null,
+	cpf             char(11)    not null,
 	fone            char(11),
 	email           varchar(255),
-	setor_id				int         not null,
+	setor_id        int         not null,
 	tipo_usuario_id int         not null,
 	foreign key (setor_id) references setor(id),
 	foreign key (tipo_usuario_id) references tipo_usuario(id)
