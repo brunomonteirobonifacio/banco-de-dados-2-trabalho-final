@@ -10,9 +10,11 @@ Procedure (Registrar Nova Venda):
 Uma venda é uma operação crítica que envolve múltiplas etapas. Uma procedure garante que todas as etapas (verificação de estoque, inserção em venda, inserção 
 em venda_item e atualização de produto) sejam executadas em uma única transação. Se qualquer passo falhar, toda a operação é revertida (rollback), evitando inconsistências nos dados.
 
-Trigger (Registrar Movimentação de Estoque):
-Este trigger automatiza a criação de um histórico de movimentação de estoque. Ele garante que toda alteração na quantidade de produtos seja auditada na tabela 
-movimento_estoque, o que é fundamental para o controle e a rastreabilidade do inventário.
+Trigger (Registrar Movimentação de Estoque - Saída):
+Este trigger automatiza o registro das movimentações de saída do estoque. Sempre que um item é inserido na tabela venda_item, ele gera automaticamente um registro na tabela movimento_estoque, classificando como SAIDA. Isso garante que toda saída de produtos decorrente de uma venda seja corretamente auditada, contribuindo para o controle, rastreabilidade e histórico preciso do inventário.
+
+Trigger (Registrar Movimentação de Estoque - Entrada):
+Este trigger automatiza o registro das movimentações de entrada no estoque. Sempre que um item é inserido na tabela pedido_item, ele gera automaticamente um registro na tabela movimento_estoque, classificando como ENTRADA. Isso assegura que toda entrada de produtos oriunda de um pedido seja devidamente auditada, sendo essencial para manter a consistência, o controle e a rastreabilidade dos dados de estoque no sistema.
 
 View 01 (Relatório Detalhado de Vendas):
 Simplifica drasticamente a geração de relatórios de vendas. Em vez de escrever um JOIN complexo com 4 tabelas toda vez, o analista ou o sistema pode simplesmente 

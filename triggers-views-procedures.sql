@@ -70,36 +70,63 @@ BEGIN
 END;
 $$;
 
---trigger 
+--trigger 1
 
-CREATE OR REPLACE FUNCTION tg_log_movimento_estoque()
+CREATE OR REPLACE FUNCTION tg_movimento_estoque_entrada()
 RETURNS TRIGGER AS $$
-DECLARE
-    tipo_mov VARCHAR(7);
-    qtde_movimentada INT;
 BEGIN
-    IF TG_OP = 'UPDATE' THEN
-        qtde_movimentada := NEW.qtde - OLD.qtde;
+    INSERT INTO movimento_estoque (
+        produto_id, 
+        qtde, 
+        tipo_movimento, 
+        responsavel_id, 
+        movimento_origem_id
+    )
+    VALUES (
+        NEW.produto_id, 
+        NEW.qtde, 
+        'ENTRADA', 
+        (SELECT responsavel_id FROM pedido WHERE id = NEW.pedido_id), 
+        NEW.pedido_id
+    );
 
-        IF qtde_movimentada < 0 THEN
-            tipo_mov := 'SAIDA';
-            qtde_movimentada := qtde_movimentada * -1; 
-        ELSE
-            tipo_mov := 'ENTRADA';
-        END IF;
-
-        INSERT INTO movimento_estoque(produto_id, qtde, tipo_movimento, responsavel_id)
-        VALUES(NEW.id, qtde_movimentada, tipo_mov, NULL); 
-    END IF;
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER tr_movimento_estoque
-AFTER UPDATE ON produto
+CREATE TRIGGER tr_movimento_estoque_entrada
+AFTER INSERT ON pedido_item
 FOR EACH ROW
-WHEN (OLD.qtde IS DISTINCT FROM NEW.qtde)
-EXECUTE FUNCTION tg_log_movimento_estoque();
+EXECUTE FUNCTION tg_movimento_estoque_entrada();
+
+--trigger 2
+
+CREATE OR REPLACE FUNCTION tg_movimento_estoque_saida()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO movimento_estoque (
+        produto_id, 
+        qtde, 
+        tipo_movimento, 
+        responsavel_id, 
+        movimento_origem_id
+    )
+    VALUES (
+        NEW.produto_id, 
+        NEW.qtde, 
+        'SAIDA', 
+        (SELECT id FROM usuario WHERE id = 1), -- Altere para o usuário logado/responsável
+        NEW.venda_id
+    );
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER tr_movimento_estoque_saida
+AFTER INSERT ON venda_item
+FOR EACH ROW
+EXECUTE FUNCTION tg_movimento_estoque_saida();
 
 --view 01
 
