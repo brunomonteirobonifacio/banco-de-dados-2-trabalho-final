@@ -1,4 +1,5 @@
 <?php
+include '../config/verifica_login.php';
 include '../config/conexao.php';
 
 // Busca todas as categorias para o dropdown

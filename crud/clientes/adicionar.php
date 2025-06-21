@@ -1,4 +1,5 @@
 <?php
+include '../config/verifica_login.php';
 // CORREÇÃO APLICADA AQUI
 include '../config/conexao.php';
 $erro = '';

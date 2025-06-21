@@ -1,4 +1,5 @@
 <?php
+include '../config/verifica_login.php';
 include '../config/conexao.php';
 include '../templates/header.php';
 $stmt = $pdo->query("SELECT id, nome FROM setor ORDER BY id");

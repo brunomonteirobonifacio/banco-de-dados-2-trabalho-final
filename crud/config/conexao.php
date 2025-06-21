@@ -1,4 +1,13 @@
 <?php
+
+// Define a URL base do seu projeto. 
+// Certifique-se que o caminho corresponde exatamente ao da sua pasta no htdocs.
+define('BASE_URL', '/banco-de-dados-2-trabalho-final/crud/');
+
+// O resto do seu arquivo de conexão continua aqui...
+$host = 'localhost';
+// ... etc
+
 // Detalhes da conexão com o banco de dados PostgreSQL
 $host = 'localhost';
 $port = '5432'; // Porta padrão do PostgreSQL

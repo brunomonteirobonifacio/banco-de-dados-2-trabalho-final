@@ -1,4 +1,10 @@
-<?php include 'templates/header.php'; ?>
+<?php
+
+include 'config/verifica_login.php';
+include 'config/conexao.php';
+include 'templates/header.php';
+?>
+
 
 <h2>Bem-vindo ao Sistema de Gestão</h2>
 <p>Selecione uma das opções abaixo para começar:</p>
@@ -15,4 +21,7 @@
     <a href="pedidos/">Relatório de Pedidos</a>
 </div>
 
-<?php include 'templates/footer.php'; ?>
+<?php 
+
+include 'templates/footer.php'; 
+?>

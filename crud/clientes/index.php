@@ -1,15 +1,16 @@
 <?php
-// CORREÇÃO APLICADA AQUI
-include '../config/conexao.php';
-include '../templates/header.php';
+include '../config/verifica_login.php'; // 1. Inicia a sessão e protege
+include '../config/conexao.php';      // 2. Define BASE_URL e conecta ao DB
+include '../templates/header.php';      // 3. Mostra o cabeçalho
 
+
+// 4. A lógica da página começa aqui...
 $sql = "SELECT cl.id, cl.nome, cl.cpf, cl.email, ci.nome AS cidade, es.uf AS estado
         FROM cliente cl
         JOIN endereco en ON cl.endereco_id = en.id
         JOIN cidade ci ON en.cidade_id = ci.id
         JOIN estado es ON ci.estado_id = es.id
         ORDER BY cl.id";
-// A variável $pdo agora vai existir, pois a conexão foi incluída corretamente
 $stmt = $pdo->query($sql);
 ?>
 <h2>Gestão de Clientes</h2>
@@ -38,7 +39,8 @@ $stmt = $pdo->query($sql);
         ?>
     </tbody>
 </table>
+
 <?php 
-// CORREÇÃO APLICADA AQUI
+// Inclui o rodapé da página
 include '../templates/footer.php'; 
 ?>

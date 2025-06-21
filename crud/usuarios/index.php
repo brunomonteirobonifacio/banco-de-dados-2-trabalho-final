@@ -1,4 +1,5 @@
 <?php
+include '../config/verifica_login.php';
 include '../config/conexao.php';
 include '../templates/header.php';
 $sql = "SELECT u.id, u.nome, u.email, s.nome AS setor, tu.nome AS tipo

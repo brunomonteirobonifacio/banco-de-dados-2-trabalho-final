@@ -1,4 +1,5 @@
 <?php
+include '../config/verifica_login.php';
 include '../config/conexao.php';
 $id = (int)$_GET['id'];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

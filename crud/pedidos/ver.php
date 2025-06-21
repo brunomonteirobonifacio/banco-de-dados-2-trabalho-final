@@ -1,4 +1,5 @@
 <?php
+include '../config/verifica_login.php';
 include '../config/conexao.php';
 $pedido_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 if ($pedido_id <= 0) { header('Location: index.php'); exit(); }
