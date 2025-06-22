@@ -11,6 +11,7 @@ $stmt = $pdo->query($sql);
 ?>
 
 <h2>Relatório de Vendas</h2>
+<a href="adicionar.php" class="btn">Adicionar Nova Venda</a>
 <table>
     <thead>
         <tr>

@@ -1,5 +1,5 @@
 <?php
-// CORREÇÃO APLICADA AQUI
+
 include '../config/conexao.php';
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 

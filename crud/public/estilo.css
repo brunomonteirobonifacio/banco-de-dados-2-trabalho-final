@@ -136,10 +136,6 @@ hr {
 }
 
 
-/* =================================
-   ESTILOS DE CONTEÚDO (TABELAS, BOTÕES, FORMS)
-   ================================= */
-
 /* ESTILOS DE TABELAS */
 table {
     width: 100%;
@@ -220,8 +216,8 @@ form select {
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
-    width: 100%; /* Garante que os inputs ocupem a largura disponível */
-    box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+    width: 100%;
+    box-sizing: border-box; 
 }
 
 form button {

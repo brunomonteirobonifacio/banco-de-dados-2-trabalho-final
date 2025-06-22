@@ -1,6 +1,6 @@
 <?php
 include '../config/verifica_login.php';
-// CORREÇÃO APLICADA AQUI
+
 include '../config/conexao.php';
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 $cliente = null; $erro = '';
@@ -51,7 +51,7 @@ try {
     die("Erro ao buscar cliente: " . $e->getMessage());
 }
 
-// CORREÇÃO APLICADA AQUI
+
 include '../templates/header.php';
 ?>
 <h2>Editar Cliente</h2>
@@ -73,6 +73,6 @@ include '../templates/header.php';
     <a href="index.php" class="btn-cancelar">Cancelar</a>
 </form>
 <?php 
-// CORREÇÃO APLICADA AQUI
+
 include '../templates/footer.php'; 
 ?>

@@ -1,5 +1,4 @@
 <?php
-// Inicia a sessão para podermos usar variáveis de sessão
 session_start();
 
 // Se o usuário já estiver logado, redireciona para a página principal

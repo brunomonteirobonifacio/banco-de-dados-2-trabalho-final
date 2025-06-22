@@ -1,7 +1,7 @@
 <?php
-include '../config/verifica_login.php'; // 1. Inicia a sessão e protege
-include '../config/conexao.php';      // 2. Define BASE_URL e conecta ao DB
-include '../templates/header.php';      // 3. Mostra o cabeçalho
+include '../config/verifica_login.php'; 
+include '../config/conexao.php';      
+include '../templates/header.php';      
 
 $stmt = $pdo->query("SELECT id, nome FROM produto_categoria ORDER BY id");
 ?>

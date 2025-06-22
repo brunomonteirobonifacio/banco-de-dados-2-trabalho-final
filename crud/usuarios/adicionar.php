@@ -3,7 +3,7 @@ include '../config/verifica_login.php';
 include '../config/conexao.php';
 $erro = '';
 
-// Busca setores e tipos para os dropdowns
+
 $setores_stmt = $pdo->query("SELECT id, nome FROM setor ORDER BY nome");
 $setores = $setores_stmt->fetchAll(PDO::FETCH_ASSOC);
 $tipos_stmt = $pdo->query("SELECT id, nome FROM tipo_usuario ORDER BY nome");

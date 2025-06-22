@@ -4,7 +4,6 @@ include '../config/conexao.php';
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 $erro = '';
 
-// Busca todas as categorias para o dropdown
 $categorias_stmt = $pdo->query("SELECT id, nome FROM produto_categoria ORDER BY nome");
 $categorias = $categorias_stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -25,7 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-// Busca os dados do produto para preencher o formulário
 $sql_produto = "SELECT * FROM produto WHERE id = :id";
 $stmt_produto = $pdo->prepare($sql_produto);
 $stmt_produto->execute([':id' => $id]);

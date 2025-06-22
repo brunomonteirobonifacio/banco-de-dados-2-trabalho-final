@@ -2,7 +2,7 @@
 include '../config/verifica_login.php';
 include '../config/conexao.php';
 
-// Busca todas as categorias para o dropdown
+
 $categorias_stmt = $pdo->query("SELECT id, nome FROM produto_categoria ORDER BY nome");
 $categorias = $categorias_stmt->fetchAll(PDO::FETCH_ASSOC);
 
